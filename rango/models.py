@@ -4,8 +4,10 @@ from django.template.defaultfilters import slugify
 # Create your models here.
 
 class Category(models.Model):
+    
+    Name_Max_Length = 128
         
-    name = models.CharField(max_length=128, unique=True)
+    name = models.CharField(max_length=Name_Max_Length, unique=True)
     views = models.IntegerField(default=0)
     likes = models.IntegerField(default=0)
     slug = models.SlugField(unique=True)
@@ -23,8 +25,11 @@ class Category(models.Model):
     
 class Page(models.Model):
     
+    Title_Max_Length = 128
+    Url_Max_Length = 200
+    
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    title = models.CharField(max_length=128)
+    title = models.CharField(max_length=Title_Max_Length)
     url = models.URLField()
     views = models.IntegerField(default=0)
     
